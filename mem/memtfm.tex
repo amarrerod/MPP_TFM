@@ -1,0 +1,291 @@
+\documentclass[english,a4paper,14pt,oneside]{extreport}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[official]{eurosym}
+\usepackage[dvips]{graphicx}
+\usepackage[dvips]{epsfig}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{alltt}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{rotating,tabularx}
+\usepackage{algorithmic}
+\usepackage[]{algorithm2e}
+\usepackage{afterpage}
+\usepackage{capt-of}% or use the larger `caption` package
+\usepackage{amstext} % for \text macro
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\SONY}{{\sc Sony}}
+\newcommand{\MICROSOFT}{{\sc Microsoft}}
+\newcommand{\GCC}{\textsf{\textsc{G}CC}}
+\newcommand{\INTEL}{\textsf{\textsc{I}ntel}}
+
+
+
+%%%%%%%%%%%%%%%%% Creamos un entorno para listar cÃ³digo fuente %%%%%%%%%%%%%%%
+\newenvironment{sourcecode}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\scriptsize\bfseries}
+{\end{list}}
+
+\newenvironment{littlesourcecode}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\tiny\bfseries}
+{\end{list}}
+
+\newenvironment{summary}
+{\par\noindent\begin{center}\textbf{Abstract}\end{center}\begin{itshape}\par\noindent}
+{\end{itshape}}
+
+\newenvironment{keywords}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item[\hskip\labelsep \bfseries Keywords:]}
+{\end{list}}
+
+\newenvironment{palabrasClave}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item[\hskip\labelsep \bfseries Palabras clave:]}
+{\end{list}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Format
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{showframe}
+%\marginparwidth 0mm
+%%\topmargin -4 mm
+%\topmargin -21 mm
+%\headheight 10 mm
+%\headsep 10 mm
+
+%\textheight 229 mm
+%\textheight 246 mm
+
+%\oddsidemargin -5.4 mm
+%\evensidemargin -5.4 mm
+%\oddsidemargin 5 mm
+%\evensidemargin 5 mm
+
+%\oddsidemargin -3 mm
+%\evensidemargin -3 mm
+
+%\textwidth 17 cm
+%\textwidth 15 cm
+%\columnsep 10 mm
+
+\input{amssym.def}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% First Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{1mm}}
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{0mm}
+
+\vspace*{\stretch{0.5}}
+
+\begin{center}
+\includegraphics[scale=1.5]{images/marca.png}\\[10mm]
+{\Huge Masters Degree Thesis}
+\end{center}
+
+\HRule
+\begin{flushright}
+        {\Huge On the healthy and balanced menu planning automatisation} \\[2.5mm]
+        {\Large Planificación automática de menús saludables y equilibrados}\\[2.5mm]
+        {\Large Alejandro Marrero Díaz} \\[5mm]
+
+
+\end{flushright}
+\HRule
+\vspace*{\stretch{2}}
+\begin{center}
+  \Large La Laguna, XX March 2019
+\end{center}
+
+\setlength{\parindent}{5mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Signature page (add the official stamp)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%\cleardoublepage
+\thispagestyle{empty}
+
+Mr. {\bf Eduardo Manuel Segredo González}, con N.I.F. 78-564-242-Z
+Part-time lecturer at Departamento 
+de Ingeniería Informática y de Sistemas
+de la Universidad de La Laguna, as mentor
+
+\bigskip
+Mrs. {\bf Coromoto Antonia León Hernández}, with N.I.F. 78-605-216-W
+Full-time lecturer at Departamento 
+de Ingeniería Informática y de Sistemas
+de la Universidad de La Laguna, as mentor
+
+\bigskip
+\bigskip
+{\bf C E R T I F Y}
+
+\bigskip
+\bigskip
+\bigskip
+That this report named:
+
+\bigskip
+``{\it On the healthy and balance menu planning automatisation.}''
+
+\bigskip
+\bigskip
+\bigskip
+
+\noindent has been done under they supervision by Mr. {\bf Alejandro Marrero Díaz},
+with N.I.F. 78-649-404-F.
+
+\bigskip
+\bigskip
+
+And to be recorded, in compliance of the current legislation and timely effects XX March 2019.
+
+%\cleardoublepage
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+
+{ \flushright
+
+\begin{LARGE}
+Acknowledgements 
+\end{LARGE}
+
+\hspace{3mm}
+
+\begin{large}
+
+
+\hspace{3mm}
+%A mi familia y amigos que
+
+\hspace{3mm}
+%me han apoyado incondicionalmente estos cuatro años.
+
+\bigskip
+
+\hspace{3mm}
+%Agradecer también a los directores de este Trabajo de Fin de Grado,
+
+\hspace{3mm}
+%Eduardo Segredo y Carlos Segura,
+
+\hspace{3mm}
+%por la ayuda en el desarrollo del mismo
+
+\hspace{3mm}
+%y por adentrarme en el mundo de la investigación.
+
+\end{large}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+\begin{huge}
+License
+\end{huge}
+\begin{center}
+\includegraphics[scale=1.5]{images/by-nc-sa_88x31}\\[10mm]
+{\Large \copyright~This work is under Creative Commons license.
+}
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage  %\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage  %\cleardoublepage
+\begin{abstract}
+{\em
+
+
+
+}
+
+\begin{keywords}
+
+\end{keywords}
+
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{\pagestyle{empty}}
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\pagestyle{myheadings} %my head defined by markboth or markright
+% No funciona bien \markboth sin "twoside" en \documentclass, pero al
+% ponerlo se dan un montÃ³n de errores de underfull \vbox, con lo que no se
+% ha puesto.
+\markboth{Alejandro Marrero Díaz}{On the healthy and balance menu planning automatisation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Numeracion en romanos
+\renewcommand{\thepage}{\roman{page}}
+\setcounter{page}{1}
+
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{\pagestyle{empty}}
+\listoffigures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{\pagestyle{empty}}
+\listoftables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage{\pagestyle{empty}}
+
+\chapter{Motivation}\label{ref:motivation}
+\input{chapters/motivation.tex}
+\newpage{\pagestyle{empty}}
+\chapter{Introduction}\label{ref:intro}
+\input{chapters/introduction.tex}
+\newpage{\pagestyle{empty}}
+\chapter{Algorithms}\label{ref:algorithm}
+\input{chapters/algorithms.tex}
+\newpage{\pagestyle{empty}}
+\chapter{Results}\label{ref:results}
+\input{chapters/results.tex}
+\newpage{\pagestyle{empty}}
+\chapter{Summary and conclusions}\label{ref:conclusions}
+\input{chapters/conclusion.tex}
+\newpage{\pagestyle{empty}}
+\chapter{Budget}\label{ref:budge}
+\input{chapters/budget.tex}
+\newpage{\pagestyle{empty}}
+%
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+
+\bibliography{memtfm}
+%\nocite{*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
