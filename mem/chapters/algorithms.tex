@@ -1,5 +1,14 @@
-\section{Multiobjective Evolutionary Algorithm Based on Decomposition}
-Multiobjective Evolutionary Algorithm Based on Decomposition (MOEA/D) is an evolutionary algorithm for multiobjective optimisation proposed by Qingfu Zhang and Hui Li in 2007\cite{Zhang2007}. The underlying idea behind this algorithm is to decompose a multiobjective optimisation problem into a number of scalar optimisation sub-problems and optimises them simultaneously. It also harnesses in the well-known feature of Pareto optimal solutions to a MOP, which sustains that an optimal solution for a scalar optimisation problem with an objective function as the aggregation of all the $f_{i}$ could be the same as the Pareto optimal solution for the MOP\cite{Zhang2007}.
+
+At this point, it will be introduced the evolutionary algorithms compared in this thesis. With a view to have variety of MOEAs, every algorithm it is based on a different MOEA approach\cite{ZHOU201132}:
+
+\begin{itemize}
+    \item Based on decomposition: Multi-objective Evolutionary Algorithm Based on Decomposition.
+    \item Based on preference: Non-dominated Sorting Genetic Algorithm II.
+    \item Based on PSO: Strength Pareto Evolutionary Algorithm. 
+\end{itemize}
+
+\section{Multi-objective Evolutionary Algorithm Based on Decomposition}
+Multi-objective Evolutionary Algorithm Based on Decomposition (MOEA/D) is an evolutionary algorithm for multi-objective optimisation proposed by Qingfu Zhang and Hui Li in 2007\cite{Zhang2007}. The underlying idea behind this algorithm is to decompose a multi-objective optimisation problem into a number of scalar optimisation sub-problems and optimises them simultaneously. It also harnesses in the well-known feature of Pareto optimal solutions to a MOP, which sustains that an optimal solution for a scalar optimisation problem with an objective function as the aggregation of all the $f_{i}$ could be the same as the Pareto optimal solution for the MOP\cite{Zhang2007}.
 
 The decomposition approach of MOEA/D takes place where the algorithm decomposes a MOP into \textit{N} sub-problems and simultaneously optimises every single sub-problem at each generation. Furthermore it establish some relations between sub-problems and organised them in neighbourhoods. These neighbourhoods are shaped by sub-problems which coefficient vectors are very similar to each other and every single sub-problem is optimised based on its neighbouring sub-problems information. Therefore, the optimal solution for two neighbouring sub-problems should be very similar\cite{Zhang2007}.
 
