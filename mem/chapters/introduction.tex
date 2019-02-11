@@ -38,11 +38,11 @@ Nowadays, there are many methods for solving MOOPs but they can be classified me
 \caption{Optimisation methods}
 \end{figure}
 
-On the one hand, \textit{exacts methods} are those which ensure that, if there is an optimal solution to the facing problem they will be able to find it. However, these methods that guarantees reaching the optimal solution, they have a important drawback, its performance. Assuring the optimal solution implies increasing the computational work and hence more time to obtain the solution.
+On the one hand, \textit{exacts methods} are those which ensure that, if there is an optimal solution to the facing problem they will be able to find it. However, even though these methods guarantee reaching the optimal solution they have a important drawback on its performance. Assuring the optimal solution implies increasing the computational work and hence more time to obtain the solution.
 
 On the other hand, \textit{approximated methods} are very popular nowadays even though they do not guarantee reaching the optimal solution for a problem. Nevertheless, approximated methods can obtain high quality solutions in an assumable time due they set a balance between computational performance and solution quality. 
 
-Approximated methods can be divided in two categories: \textit{heuristic algorithms} and \textit{metaheuristics algorithms}. However, this work it is focus primarily in \textit{metaheuristics algorithm} and even more specifically in the field of \textit{evolutionary algorithms}.
+Approximated methods can be divided in two categories: \textit{heuristic algorithms} and \textit{meta-heuristics algorithms}. However, this work it is focus primarily in \textit{meta-heuristics algorithm} and even more specifically in the field of \textit{evolutionary algorithms}.
 
 Evolutionary algorithms~(EA) develop the metaphor of natural evolution, the survival of the fittest individual\cite{eiben}. This is, given a population of individuals in some environment with limited resources, the competition for surviving causes natural selection and the fittest individuals are more likely to survive and reproduce. Nevertheless, there are several variants of EA and they can be classified as:
 \begin{enumerate}
@@ -50,6 +50,17 @@ Evolutionary algorithms~(EA) develop the metaphor of natural evolution, the surv
     \item Evolutionary Strategies\cite{Beyer2002, Hansen2017}.
     \item Differential Evolution\cite{Algorithm2006, DE1, DE2, DE3}.
 \end{enumerate}
+
+Moreover, there are a specific group of evolutionary algorithms for solving multi-objective problems known as \textit{Multi-Objective Evolutionary Algorithms~(MOEAs)}. MOEAs can be classified in many different subgroups considering the main approach underlying the algorithm\cite{ZHOU201132}:
+\begin{itemize}
+    \item MOEAs based on decomposition, i.e. MOEA/D\cite{Zhang2007, Ma2018}.
+    \item MOEAs based on preference, i.e. NSGA-II\cite{996017}.
+    \item Indicator-based MOEAs, i.e. IBEA\cite{IBEA}.
+    \item Memetic MOEAs, i.e. MOEAs incorporating local search methods.
+    \item PSO-based approaches, i.e. SPEA-2\cite{Laumanns2001SPEA2}.
+    \item MOEAs based on coevolution.
+    \item Hybrid MOEAs.
+\end{itemize}
 
 Considering the field of optimisation problems, the natural evolution metaphor is develop as follows:
 \begin{enumerate}
