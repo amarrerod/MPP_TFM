@@ -52,22 +52,22 @@ Concretely, the algorithm can be outlined as follows: \\
 \caption{MOEA/D version of this thesis.}
 \end{algorithm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nondominated Sorting Genetic Algorithm II}
+\section{Nondominated Sorting Genetic~Algorithm~II}
 \textit{Nondominated Sorting Genetic Algorithm II}, as well known as \textit{NSGA-II} was proposed in 2002 by K. Deb and A. Pratap and S. Agarwal and T. Meyarivan to mitigate the major difficulties of nondominated sorting MOEAs\cite{996017}. In fact, this algorithm is an improvement of the previously algorithm is an improvement of the previously suggested algorithm NSGA [16] algorithm NSGA\cite{Srinivas1994MuiltiobjectiveOU} in 1994 by N. Srinivas and Kalyanmoy Deb.
-The main improvements of NSGA-II over NSGA is a fast nondominated sorting approach with complexity $\mathcal{O}(MN^{2})$ that replaces the previous one which has complexity $\mathcal{O}(MN^{3})$\cite{996017}(considering \textit{M} the number of objectives and \textit{N} the population size) and the selection operator of NSGA-II which comes to solve the lack of elitism of the previous NSGA version. The fast nondominated sorting procedure starts by computing the domination count \textit{n_{p}} which is the number of solutions that dominates \textit{p} and next, the set of solutions dominated by p called \textit{S_{p}}. Then the procedure continues identifying all Pareto Fronts\cite{996017} and ranking the solutions in different fronts by its \textit{n_{p}}.
+The main improvements of NSGA-II over NSGA is a fast nondominated sorting approach with complexity $\mathcal{O}(MN^{2})$ that replaces the previous one which has complexity $\mathcal{O}(MN^{3})$\cite{996017}(considering \textit{M} the number of objectives and \textit{N} the population size) and the selection operator of NSGA-II which comes to solve the lack of elitism of the previous NSGA version. The fast nondominated sorting procedure starts by computing the domination count $n_{p}$ which is the number of solutions that dominates \textit{p} and next, the set of solutions dominated by p called \textit{$S_{p}$}. Then the procedure continues identifying all Pareto Fronts and ranking the solutions in different fronts by its $n_{p}$\cite{996017} .
 
-NSGA-II algorithm is quite simple and it can be seen in the pseudocode down below:
+NSGA-II algorithm is quite simple and it can be seen in the pseudocode down below.
 
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
-\State P = CreateInitialPopulation()\;
+\State P = CreateInitialPopulation(N)\;
 \State  FastNondominatedSorting(P)\;
   \While{not StopCriteria satisfied}
     \State BinaryTournamentSelection(P)\;
     \State Q = CreateOffspring(P)\;
     \State R = Combine(P, Q)\;
     \State FastNondominatedSorting(R)\;
-    \State P = SelectNIndividuals(R)\;
+    \State P = SelectNIndividuals(R, N)\;
   \EndWhile
   \State \textbf{end}
 \end{algorithmic}
@@ -75,5 +75,21 @@ NSGA-II algorithm is quite simple and it can be seen in the pseudocode down belo
 \end{algorithm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \section{Strength Pareto Evolutionary Algorithm 2}
+Likewise \textit{NSGA-II} is an improvements of its predecessor NSGA, the \textit{Strength Pareto Evolutionary Algorithm 2} was published in 2001 by Eckart Zitzler, Marco Laumanns and Lothar Thiele as a new version of SPEA algorithm proposed in 1999 by Zitzler and Thiele\cite{SPEA2}.
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\State P = CreateInitialPopulation(N)\;
+\State $\overline{P}$ = CreateEmptyArchive();\;
+  \While{not StopCriteria satisfied}
+    \State ComputeFitness(P,$\overline{P}$)
+    \State EnvironmentalSelection();
+    \State BinaryTournamentSelection();
+    \State Recombination();
+    \State Mutation();
+  \EndWhile
+  \State \textbf{end}
+\end{algorithmic}
+\caption{Pseudocode of SPEA2.}
+\end{algorithm}
