@@ -76,8 +76,46 @@ NSGA-II algorithm is quite simple and it can be seen in the pseudocode down belo
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Strength Pareto Evolutionary Algorithm 2}
-Likewise \textit{NSGA-II} is an improvements of its predecessor NSGA, the \textit{Strength Pareto Evolutionary Algorithm 2} was published in 2001 by Eckart Zitzler, Marco Laumanns and Lothar Thiele as a new version of SPEA algorithm proposed in 1999 by Zitzler and Thiele\cite{SPEA2}.
+Likewise \textit{NSGA-II} is an improvement of its predecessor NSGA, the \textit{Strength Pareto Evolutionary Algorithm 2} was published in 2001 by Eckart Zitzler, Marco Laumanns and Lothar Thiele as a new version of SPEA algorithm proposed in 1999 by Zitzler and Thiele\cite{SPEA2}. Essentially, the SPEA 2 differs with SPEA in a fine-grained fitness assignment strategy, a density estimation technique, and an enhanced archive truncation method\cite{SPEA2}.
+The basis of both SPEA and SPEA 2 algorithm are that they uses a standard population (P) and also an \textit{archive ($\overline{P}$)} or external population and follows theses steps:
+\begin{itemize}
+    \item Create an initial random population of size \textit{N} and an empty archive.
+    \item Then all nondominated individuals are sent to the archive.
+    \item If the size of the archive increase over the limit $\overline{N}$, new archive individuals are deleted preserving the nondominated front.
+    \item Both population and archive individuals are evaluated and a fitness value is assigned to each of them.
+    \item After the evaluation, the mating selection phase comes.
+    \item When the parents are selected, genetic operators are applied to generate offspring and replace the old population.
+\end{itemize}
 
+Although those are the foundations of SPEA and SPEA 2, SPEA 2 has two improvements in \textit{fitness assignment} and \textit{environmental selection}.
+On the one hand, in an effort to avoid that individuals dominated by the same archive individuals have the same fitness, each individual \textbf{i} in $\overline{P}$ and P have a strength value $S(i)$ indicating the number of individuals it dominates\cite{SPEA2}.
+\[
+    S(i) = | \{ j | j \in P_{t} + \overline{P_{t}} \land	 i \succ j \} |
+\]
+After computing the strength of each individual, a \textit{Raw fitness value (R)} is calculated for each individual.
+\[
+    R(i) = \sum_{j\in P_{t} + \overline{P_{t}}, j \succ i}{S(j)}
+\]
+In the case where most individuals do not dominate each other, \textit{R} it is not enough so an adaptation of the \textit{k}-the nearest neighbour algorithm is included for additional density information. In this particular case, authors use k as the result of the square root of the sample size, so $k = \sqrt{N + \overline{N}}$. Then, the density of each individual is calculated as follows.
+\[
+    D(i) = \frac{1}{\sigma_{i}^{k} + 2}
+\]
+Finally, the fitness value (\textit{F}) of each individual is defined as the sum of its raw fitness plus its density.
+\[
+    F(i) = R(i) + D(i)
+\]
+On the other hand, the archive updating procedure of SPEA 2 is slightly different from SPEA. Primarily, it ensures two aspects\cite{SPEA2}: 
+\begin{itemize}
+    \item The number of individuals in the archive maintain is regular.
+    \item The truncation method prevents boundary solutions being removed.
+\end{itemize}
+The environmental selection begins by copying all nondominated individuals from archive and population which have a fitness value \textit{F} lower than one to the archive for the next generation.
+\[
+\overline{P_{t+1}} = \{ i | i \in \overline{P_{t}} + \overline{P_{t}} \land F(i) < 1 \}
+\]
+After finishing this step, if the archive is fully filling, the environmental selection is completed. Under other conditions, new individuals are added to the archive if it is too small or deleted in other case to fit the size $\overline{N}$.
+
+All the previous description of SPEA 2 algorithm can be outlined in the following pseudocode.
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
 \State P = CreateInitialPopulation(N)\;
