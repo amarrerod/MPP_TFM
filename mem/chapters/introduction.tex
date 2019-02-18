@@ -32,7 +32,7 @@ On the other hand, it is the direction conflict between objectives which leads t
 
 Nowadays, there are many methods for solving MOOPs but they can be classified merely in two types of methods: \textit{approximated methods and exacts methods}. The different categories of exact and approximated methods can be seen down below.
 
-\begin{figure}[!h]\label{opt_met}
+\begin{figure}[!ht]\label{opt_met}
 \centering
 \includegraphics[width=0.8\textwidth]{mem/images/meta.png}
 \caption{Optimisation methods}
@@ -58,8 +58,6 @@ Moreover, there are a specific group of evolutionary algorithms for solving mult
     \item Indicator-based MOEAs, i.e. IBEA\cite{IBEA}.
     \item Memetic MOEAs, i.e. MOEAs incorporating local search methods.
     \item PSO-based approaches, i.e. SPEA-2\cite{Laumanns2001SPEA2}.
-    \item MOEAs based on coevolution.
-    \item Hybrid MOEAs.
 \end{itemize}
 
 Considering the field of optimisation problems, the natural evolution metaphor is develop as follows:
@@ -72,16 +70,19 @@ Considering the field of optimisation problems, the natural evolution metaphor i
 \end{enumerate}
 Generally, the before metaphor can be shown as a pseudo-code\cite{eiben}:
 
-\begin{algorithm}[!h]
-  INITIALISE population with random candidate solutions\;
-  EVALUATE each candidate\;
-  \While{not StopCriteria satisfied}{
-    SELECT parents\;
-    RECOMBINE pairs of parents\;
-    MUTATE the result offspring\;
-    EVALUATE new candidates\;
-    SELECT individuals for the next generation\; 
-  }
+\begin{algorithm}[!ht]
+\begin{algorithmic}[1]
+  \State INITIALISE population with random candidate solutions
+  \State EVALUATE each candidate
+  \While{not StopCriteria satisfied}
+    \State SELECT parents
+    \State RECOMBINE pairs of parents
+    \State MUTATE the result offspring
+    \State EVALUATE new candidates
+    \State SELECT individuals for the next generation 
+  \EndWhile
+  \State \textbf{end}
+  \end{algorithmic}
   \caption{General scheme of an EA.}
 \end{algorithm}
 
