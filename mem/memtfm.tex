@@ -12,6 +12,15 @@
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=black
+}
 \usepackage{rotating,tabularx}
 \usepackage{algorithm}
 \floatname{algorithm}{Algorithm}
@@ -313,6 +322,9 @@ menu-plan, computer-science
 \bibliographystyle{plain}
 
 \bibliography{memtfm}
+\begin{appendices}
+\input{chapters/appendices.tex}
+\end{appendices}
 %\nocite{*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
