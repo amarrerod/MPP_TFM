@@ -56,7 +56,6 @@ Moreover, there are a specific group of evolutionary algorithms for solving mult
     \item MOEAs based on decomposition, i.e. MOEA/D\cite{Zhang2007, Ma2018}.
     \item MOEAs based on preference, i.e. NSGA-II\cite{996017}.
     \item Indicator-based MOEAs, i.e. IBEA\cite{IBEA}.
-    \item Memetic MOEAs, i.e. MOEAs incorporating local search methods.
     \item PSO-based approaches, i.e. SPEA-2\cite{Laumanns2001SPEA2}.
 \end{itemize}
 
@@ -100,3 +99,46 @@ In the other hand, in the paper\cite{Funabiki2011}, the authors refer to the Two
 Eventually, another study where the MPP is faced as a single-objective problem is\cite{Sufahani2014}. Here, the authors set up a mathematical model to solve the MPP considering only one objective function. The model's goal is to minimise the budget provided by the government subject to the restriction of trying to maximise the variety of dishes. Furthermore, the model tries to create menus in such a way they maximise the nutritional requirements. For the computational experiments, the researchers programmed an Integer Programming algorithm in Matlab using LPSolve. Furthermore, the given results, taking into account that the optimal solution was found within one second, are better compared to other heuristics like GA.
 
 As can be seen, there is a certain variety within the optimisation methods for solving the single-objective MPP approach. Despite that, Evolutionary Computing \textit{(EC)} techniques, such as GA, are mostly cited in the related bibliography as a good choice\cite{Ngo2016, Seljak2009, Moreira2018}. 
+
+In this particular case, a new formulation of the Menu Planning Problem proposed in \textcolor{red}{CITA DEL PAPER} for school cafeterias is considered. The authors defined two objectives: meal cost and variety of dishes.
+On the one hand, as usual in MPP, one goal is to minimise the total cost of the meal plan generated. Since the meal plan is designed for school cafeterias, the authors considered three meals in each menu: first course, second course and dessert. Formally, the meal plan cost can be defined as follows:
+\[
+    min\; C = \sum_{i=1}^{n}{c_{fc_{i}} + c_{sc_{i}} + c_{d_{i}}}
+\]
+Where C is the total cost of the menu plan and $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ represent the cost of the first course, second course and dessert in $n$ days.
+
+On the other hand, an assorted menu plan is a must for children in order to avoid them to annoy about the food. For that reason, the second objective is to minimise the level of repetition of dishes and food groups in a certain menu plan. 
+\[
+    min\; L_{Rep} = \sum_{i=1}^{n}{v_{table_{i}} + \frac{p_{fc}}{d_{fc_{i}}} + \frac{p_{sc}}{d_{sc_{i}}} + \frac{p_{ds}}{d_{ds_{i}}} + v_{FG_{i}}}
+\]
+Where $L_{Rep}$ is the level of repetition to minimise, $v_{table_{i}}$ represents the compatibility between the courses $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ for day $n$, $p$ is a penalty constant for every kind of course and $d$ stands for the number of days since the course was repeat for the last time. Finally, $v_{FG_{i}}$ is the penalty value for repetition of food groups in the last five days.
+
+Additionally, in order to consider a menu plan as feasible, it must keep to some restrictions about a set nutritional requirements ($N$). The nutritional requirements considered in this formulation are the follow:
+\begin{AutoMultiColItemize}
+    \item Folic acid.
+    \item Calcium.
+    \item Energy (Kcal).
+    \item Phosphorus.
+    \item Fat.
+    \item Iron.
+    \item Magnesium.
+    \item Potassium.
+    \item Protein.
+    \item Selenium.
+    \item Sodium.
+    \item Vitamin A.
+    \item Vitamin B1.
+    \item Vitamin B2.
+    \item Vitamin B6.
+    \item Vitamin B12.
+    \item Vitamin C.
+    \item Vitamin D.
+    \item Vitamin E.
+    \item Iodo.
+    \item Zinc.
+\end{AutoMultiColItemize}
+There is also a vector $R$ in which the minimum and maximum amount of each nutritional requirement is stored. So formally speaking, a menu plan is feasible only if
+\[
+    \forall	 n \in N\; : R_{min_{n}} \leq I_{n} \leq R_{max_{n}}
+\]
+where $I_{n}$ is the amount of the nutritional requirement $n$ in the menu plan.
