@@ -69,7 +69,9 @@ Considering the field of optimisation problems, the natural evolution metaphor i
 \end{enumerate}
 Generally, the before metaphor can be shown as a pseudo-code\cite{eiben}:
 
-\begin{algorithm}[!ht]
+\begin{figure}
+    \centering
+\begin{algorithm}[H]
 \begin{algorithmic}[1]
   \State INITIALISE population with random candidate solutions
   \State EVALUATE each candidate
@@ -82,8 +84,11 @@ Generally, the before metaphor can be shown as a pseudo-code\cite{eiben}:
   \EndWhile
   \State \textbf{end}
   \end{algorithmic}
-  \caption{General scheme of an EA.}
+  \caption{Pseudocode of an EA.}
 \end{algorithm}
+\caption{General scheme of an EA.}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -105,7 +110,7 @@ On the one hand, as usual in MPP, one goal is to minimise the total cost of the 
 \[
     min\; C = \sum_{i=1}^{n}{c_{fc_{i}} + c_{sc_{i}} + c_{d_{i}}}
 \]
-Where C is the total cost of the menu plan and $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ represent the cost of the first course, second course and dessert in $n$ days.
+where C is the total cost of the menu plan and $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ represent the cost of the first course, second course and dessert in $n$ days.
 
 On the other hand, an assorted menu plan is a must for children in order to avoid them to annoy about the food. For that reason, the second objective is to minimise the level of repetition of dishes and food groups in a certain menu plan. 
 \[
@@ -141,4 +146,4 @@ There is also a vector $R$ in which the minimum and maximum amount of each nutri
 \[
     \forall	 n \in N\; : R_{min_{n}} \leq I_{n} \leq R_{max_{n}}
 \]
-where $I_{n}$ is the amount of the nutritional requirement $n$ in the menu plan.
+where $I_{n}$ is the amount of the n-nutritional requirement in the menu plan.
