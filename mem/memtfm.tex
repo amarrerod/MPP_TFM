@@ -11,24 +11,58 @@
 \usepackage{caption}
 \usepackage{amsmath}
 \usepackage{booktabs}
+\usepackage{verbatim}
 \usepackage[table,xcdraw]{xcolor}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=black
+}
 \usepackage{rotating,tabularx}
-\usepackage{algorithmic}
-\usepackage[]{algorithm2e}
+\usepackage{algorithm}
+\floatname{algorithm}{Algorithm}
+\usepackage[noend]{algpseudocode}
 \usepackage{afterpage}
+\usepackage{amsfonts}
+\usepackage{xcolor}
 \usepackage{capt-of}% or use the larger `caption` package
 \usepackage{amstext} % for \text macro
 \usepackage{array}   % for \newcolumntype macro
 \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+\usepackage{etoolbox,refcount}
+\usepackage{multicol}
+\newcounter{countitems}
+\newcounter{nextitemizecount}
+\newcommand{\setupcountitems}{%
+  \stepcounter{nextitemizecount}%
+  \setcounter{countitems}{0}%
+  \preto\item{\stepcounter{countitems}}%
+}
+\makeatletter
+\newcommand{\computecountitems}{%
+  \edef\@currentlabel{\number\c@countitems}%
+  \label{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\newcommand{\nextitemizecount}{%
+  \getrefnumber{countitems@\number\c@nextitemizecount}%
+}
+\newcommand{\previtemizecount}{%
+  \getrefnumber{countitems@\number\numexpr\value{nextitemizecount}-1\relax}%
+}
+\makeatother    
+\newenvironment{AutoMultiColItemize}{%
+\ifnumcomp{\nextitemizecount}{>}{3}{\begin{multicols}{2}}{}%
+\setupcountitems\begin{itemize}}%
+{\end{itemize}%
+\unskip\computecountitems\ifnumcomp{\previtemizecount}{>}{3}{\end{multicols}}{}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\SONY}{{\sc Sony}}
-\newcommand{\MICROSOFT}{{\sc Microsoft}}
-\newcommand{\GCC}{\textsf{\textsc{G}CC}}
-\newcommand{\INTEL}{\textsf{\textsc{I}ntel}}
-
-
 
 %%%%%%%%%%%%%%%%% Creamos un entorno para listar cÃ³digo fuente %%%%%%%%%%%%%%%
 \newenvironment{sourcecode}
@@ -222,10 +256,11 @@ License
 \begin{abstract}
 {\em
 
-With the raise of diseases related with unhealthy lifestyles such as heart-attacks, overweight, diabetes, etc. Encouraging healthy and balanced patterns in the population is one of the most important action points for governments around the world. Furthermore, it is actually even a more critical situation when a high percentage of patients are child and teenagers whose habits consists merely in eating fast food or ultra-processed food and a sedentary life.
+With the raise of diseases related with unhealthy lifestyles such as heart-attacks, overweight, diabetes, etc. Encouraging healthy and balanced patterns in the population is one of the most important action points for governments around the world. Furthermore, it is actually even a more critical situation when a high percentage of patients are child and teenagers whose habits consists merely in eating fast or ultra-processed food and a sedentary life.
 
 The development of healthy and balanced menu plans became a routine task for physicians and nutritionists, and it is at this point that computer science has taken an important role. Discovering new approaches for generating healthy and balanced as well as inexpensive menu plans will play a part in banish of diseases from actual and new generations.
 
+In this Master Thesis, a evolutionary algorithm have been compared with other state-of-art evolutionary algorithm for solving the Menu Planning Problem. In order to evaluate the performance of the developed algorithm, an exhaustive experimental research was made. Firstly, we focused on evaluate the parameter tuning of the algorithm so afterwards the best configuration found could be compared with other algorithms. 
 }
 
 \begin{keywords}
@@ -285,6 +320,9 @@ menu-plan, computer-science
 \bibliographystyle{plain}
 
 \bibliography{memtfm}
+\begin{appendices}
+\input{chapters/appendices.tex}
+\end{appendices}
 %\nocite{*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
