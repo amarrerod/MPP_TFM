@@ -1,0 +1,3 @@
+ExperimentFiles: [ experimentConfigFiles/MPP_TFM/MPP_TFM_MOEA_D_p25_n5.sexp ]
+
+GeneralFrontName:  experimentsResults/referenceFronts/MPP_TFM
