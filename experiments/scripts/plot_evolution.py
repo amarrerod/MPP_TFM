@@ -8,6 +8,9 @@ average_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days
 max_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.maxHV.evolution"
 min_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.minHV.evolution"
 
+preliminary_max_HV = "../preliminary/hypervolume/evolution/maxHV/MPP_TFM_MOEA_D_PopSize_140_Neihb_42_days_20_MenuPlanning_100000000.maxHV.evolution"
+preliminary_avg_HV = "../preliminary/hypervolume/evolution/bestAvgHV/MPP_TFM_MOEA_D_PopSize_140_Neihb_42_days_20_MenuPlanning_100000000.bestAvgHV.evolution"
+
 def read_file(filename):
     checkpoints = []
     objectives = []
@@ -21,17 +24,15 @@ def read_file(filename):
             print(f"Checkpoint: {result[0]} value: {result[1]}")
     return checkpoints, objectives
 
-def combine_plots(checkpoints, min, max, average): 
+def combine_plots(plot_title, checkpoints, datasets, colors, labels): 
     plt.style.use('seaborn-darkgrid')
-    plt.plot(checkpoints, min, scaley=True, color="orange", label="Min HV")
-    plt.plot(checkpoints, average, scaley=True, color="green", label="Avg HV")
-    plt.plot(checkpoints, max, scaley=True, color="blue", label="Max HV")
+    for idx, dataset in enumerate(datasets):
+        plt.plot(checkpoints, dataset, scaley=True, color=colors[idx], label=labels[idx])
     plt.xlabel("Checkpoints")
     plt.ylabel("Hypervolume")
-    plt.title("Comparison of Min, Avg and Max HV values for MOEA/D after 1e8 ev", loc="center", fontsize=20)
+    plt.title(plot_title, loc="center", fontsize=20)
     plt.legend()
-    plt.show()
-
+    plt.show()   
 
 def plot_evolution(checkpoints, data, title, y_label, color):
     plt.style.use('seaborn-darkgrid')
@@ -46,6 +47,9 @@ if __name__ == "__main__":
     checkpoints, min_objectives = read_file(min_file)
     checkpoints, average_objectives = read_file(average_file)
     checkpoints, max_objectives = read_file(max_file)
+    checkpoints, max_preliminary = read_file(preliminary_max_HV)
+    checkpoints, avg_preliminary = read_file(preliminary_avg_HV)
+
     df = pd.DataFrame({
         "x": checkpoints,
         "min": min_objectives,
@@ -55,4 +59,8 @@ if __name__ == "__main__":
     """ plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
     plot_evolution(checkpoints, average_objectives, "HV's average values evolution over 1e8 ev", "Avg HV", "green")
     plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue") """  
-    combine_plots(checkpoints, min_objectives, max_objectives, average_objectives)
+    datasets = [min_objectives, average_objectives, max_objectives]
+    colors = ["orange", "green", "blue"]
+    labels = ["Min HV", "Avg HV", "Max HV"]
+    plot_title = "Comparison of Min, Avg and Max HV values for MOEA/D after 1e8 ev"
+    combine_plots(plot_title, checkpoints, datasets, colors, labels)
