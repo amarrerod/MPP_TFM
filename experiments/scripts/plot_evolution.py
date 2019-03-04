@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
-from matplotlib import gridspec
-import pandas as pd
 
 average_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.bestAvgHV.evolution"
 max_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.maxHV.evolution"
@@ -49,13 +47,6 @@ if __name__ == "__main__":
     checkpoints, max_objectives = read_file(max_file)
     checkpoints, max_preliminary = read_file(preliminary_max_HV)
     checkpoints, avg_preliminary = read_file(preliminary_avg_HV)
-
-    df = pd.DataFrame({
-        "x": checkpoints,
-        "min": min_objectives,
-        "average": average_objectives,
-        "max": max_objectives
-    })
     """ plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
     plot_evolution(checkpoints, average_objectives, "HV's average values evolution over 1e8 ev", "Avg HV", "green")
     plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue") """  
