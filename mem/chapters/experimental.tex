@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this chapter, the experimental evaluation of MOEA/D will be introduce. In order to achieve an accurate comparison of MOEA/D with the results obtained in \cite{Miranda2018} by other algorithms mentioned before (NSGA-II and SPEA-2), the algorithm and the experimental evaluation were development through the Metaheuristic-based Extensible Tool for Cooperative Optimisation (METCO) \footnote{Available at: https://github.com/PAL-ULL/software-metco} proposed in \cite{METCO}.
+In this chapter, the experimental evaluation of MOEA/D will be introduce. In order to achieve an accurate comparison of MOEA/D with the results obtained in \cite{Miranda2018} by other algorithms mentioned before (NSGA-II and SPEA-2), the algorithm and the experimental evaluation were development through the Metaheuristic-based Extensible Tool for Cooperative Optimisation (METCO)~\footnote{Available at: https://github.com/PAL-ULL/software-metco} proposed in \cite{METCO}.
 In addition, the experiment were executed on a Debian GNU/Linux computer with four AMD Opteron processors at 2.8GHz and 64 GB RAM and each run was repeated 25 times.
-Furthermore, following the evaluation procedure done by the authors in \cite{Miranda2018}, the \textit{hypervolume}\cite{HYPER} was the metric selected to compare the different configurations of MOEA/D and the \textit{Shapiro-Wilk, Levene, ANOVA or Welch} test were considered for results which follow a normal distribution or \textit{Kruskal-Wallis} test otherwise.
+Furthermore, following the evaluation procedure done by the authors in \cite{Miranda2018}, the \textit{hypervolume}\cite{HYPER} was the metric selected to compare the different configurations of MOEA/D and the \textit{Shapiro-Wilk, Levene, ANOVA or Welch} test were considered for results which follow a normal distribution or \textit{Kruskal-Wallis} test otherwise. However, in this thesis the number of individual evaluations was decresead from 4e8 evaluations to 1e8 evaluations in order to obtain faster results.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Instances}
 For this evaluation, a total number of 67 different courses were available group together in three different files:
@@ -40,11 +40,24 @@ R = W - L
 \]
 Configuration A statistically outperforms configuration B if the p-value, obtained after performing a pairwise comparison of both approaches by following the statistical testing procedure described at the beginning of this chapter, is lower than the significance level $\alpha = 0.05$ , and if at the same time, A provides a higher mean and median of the hypervolume at the end of the runs\cite{Miranda2018}.
 
-Even though there is not a significant control of the best ranked configuration with only 9 wins over 24 other configurations, the MOEA/D configuration with a population size of 140 individuals and 42 individuals per neighbourhood seems to be the better one. Thus, this is the configuration chosen for the next experiment.
-\input{mem/chapters/tables/ranking.tex}
+Even though there is not a significant control of the best ranked configuration in table\ref{ranking} with only 9 wins over 24 other configurations, the MOEA/D configuration with a population size of 140 individuals and 42 individuals per neighbourhood seems to be the better one. Thus, this is the configuration chosen for the next experiment.
+\input{chapters/tables/ranking.tex}
 
 \section{10-days Experiment}
 In this experiment, the main goal is the analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were launch with a 10-days MPP.
+The following figure \ref{fig:front} shows an approximation of the Pareto Front after 1e8 evaluations. And figure ~\ref{fig:average} shows the evolution of the average hypervolume values for MOEA/D after 1e8 facing a 10-days MPP.
+\begin{figure}[!h]
+\includegraphics[scale=0.35]{../experiments/plots/MOEA_D_FRONT.png}
+\caption{Front approximation of MOEA/D after 1e8 ev.}
+\label{fig:front}
+\end{figure}
 
 
+\begin{figure}[!h]
+\includegraphics[scale=0.35]{../experiments/plots/avgHV_evolution_norm.png}
+\caption{Evolution of the average HV value of MOEA/D after 1e8 ev.}
+\label{fig:average}
+\end{figure}
+
+\newpage
 \section{Comparison with the Previous Work}
