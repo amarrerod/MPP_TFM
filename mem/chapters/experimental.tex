@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this chapter, the experimental evaluation of MOEA/D will be introduce. In order to achieve an accurate comparison of MOEA/D with the results obtained in \cite{Miranda2018} by other algorithms mentioned before (NSGA-II and SPEA-2), the algorithm and the experimental evaluation were development through the Metaheuristic-based Extensible Tool for Cooperative Optimisation (METCO) \footnote{Available at: https://github.com/PAL-ULL/software-metco} proposed in \cite{METCO}.
+In addition, the experiment were executed on a Debian GNU/Linux computer with four AMD Opteron processors at 2.8GHz and 64 GB RAM and each run was repeated 25 times.
+Furthermore, following the evaluation procedure done by the authors in \cite{Miranda2018}, the \textit{hypervolume}\cite{HYPER} was the metric selected to compare the different configurations of MOEA/D and the \textit{Shapiro-Wilk, Levene, ANOVA or Welch} test were considered for results which follow a normal distribution or \textit{Kruskal-Wallis} test otherwise.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Instances}
+For this evaluation, a total number of 67 different courses were available group together in three different files:
+\begin{itemize}
+    \item $l_{st}$: 19 starters.
+    \item $l_{mc}$: 34 main courses.
+    \item $l_{ds}$: 14 desserts.
+\end{itemize}
+Besides, the structure of every files is an CSV file with the following fields:
+\begin{itemize}
+    \item Name of the course.
+    \item Price of the course.
+    \item Binary list of different allergens in case whether the course contains or not the allergen.
+    \item Incompatibilities.
+    \item Amount of the different nutrients.
+    \item Food groups which belongs the course.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Parameter Setting}
+In this preliminary experiment, the goal was to find which values of the MOEA/D\cite{Zhang2007} parameters form the better configuration facing the MPP formulation considered in this thesis. The list of MOEA/D's parameters is:
+\begin{itemize}
+    \item Population size.
+    \item Neighbourhood size.
+    \item Mutation probability that was set at 0.05.
+    \item Crossover probability which was set at 1.
+\end{itemize}
+At this point, it must be say that MPP takes one parameter which defines the number of different days that in this preliminary experiment was set at \textbf{20 days}. 
+The comments of the MOEA/D's authors in \cite{Zhang2007} about the performance of the algorithm with very small or large neighbourhood size and the effect of the population size on its performance were took into account when designing this experiment. However, a wide range of values were considered. Then, five different values for the population size and neighbourhood size were set in order to obtain 25 different configurations of MOEA/D. The values are:
+\begin{itemize}
+    \item Population size: 25, 80, 140, 190, 250.
+    \item Neighbourhood size: 0.4, 0.3, 0.25, 0.2, 0.16 of the total population size.
+\end{itemize}
+Table \ref{ranking} shows the ranking of all MOEA/D configuration for a 20-days MPP related to the hypervolume values obtained at the end of the executions. The ranking \textit{(R)} was calculated considering the number of times that one configuration outperforms other configurations \textit{(W)} and the number of times that it was outperformed by other configurations \textit{(L)}: 
+\[ 
+R = W - L
+\]
+Configuration A statistically outperforms configuration B if the p-value, obtained after performing a pairwise comparison of both approaches by following the statistical testing procedure described at the beginning of this chapter, is lower than the significance level $\alpha = 0.05$ , and if at the same time, A provides a higher mean and median of the hypervolume at the end of the runs\cite{Miranda2018}.
+
+Even though there is not a significant control of the best ranked configuration with only 9 wins over 24 other configurations, the MOEA/D configuration with a population size of 140 individuals and 42 individuals per neighbourhood seems to be the better one. Thus, this is the configuration chosen for the next experiment.
+\input{mem/chapters/tables/ranking.tex}
+
+\section{10-days Experiment}
+In this experiment, the main goal is the analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were launch with a 10-days MPP.
+
+
+\section{Comparison with the Previous Work}
