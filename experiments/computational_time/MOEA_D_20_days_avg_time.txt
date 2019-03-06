@@ -1,0 +1,26 @@
+Elapsed time: 38419.259744
+Elapsed time: 39084.973205
+Elapsed time: 38150.515958
+Elapsed time: 38690.584927
+Elapsed time: 37964.844637
+Elapsed time: 37937.45429
+Elapsed time: 38943.532414
+Elapsed time: 37988.32881
+Elapsed time: 38130.816468
+Elapsed time: 38918.526835
+Elapsed time: 38731.942808
+Elapsed time: 37953.264134
+Elapsed time: 38786.989765
+Elapsed time: 38795.160865
+Elapsed time: 38852.42723
+Elapsed time: 39393.255685
+Elapsed time: 37861.599193
+Elapsed time: 38205.847826
+Elapsed time: 39129.059863
+Elapsed time: 39397.853389
+Elapsed time: 38455.33221
+Elapsed time: 38975.487574
+Elapsed time: 39023.741816
+Elapsed time: 38399.076006
+Elapsed time: 38958.298378
+Average elapsed time: 10.724
