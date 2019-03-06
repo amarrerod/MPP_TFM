@@ -20,9 +20,7 @@ def read_file(filename):
             checkpoints.append(result[0])
             objectives.append(round(float(result[1]), 7))
             print(f"Checkpoint: {result[0]} value: {result[1]}")
-    #objectives = objectives / np.linalg.norm(objectives)
-    scaled_objs = [(i - min(objectives)) / (max(objectives) - min(objectives)) for i in objectives]
-    return checkpoints, scaled_objs
+    return checkpoints, objectives
 
 def combine_plots(plot_title, checkpoints, datasets, colors, labels): 
     plt.style.use('seaborn-darkgrid')
@@ -49,11 +47,11 @@ if __name__ == "__main__":
     checkpoints, max_objectives = read_file(max_file)
     checkpoints, max_preliminary = read_file(preliminary_max_HV)
     checkpoints, avg_preliminary = read_file(preliminary_avg_HV)
-    plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
+    """plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
     plot_evolution(checkpoints, average_objectives, "HV's average values evolution over 1e8 ev", "Avg HV", "green")
-    plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue")
-    datasets = [min_objectives, average_objectives, max_objectives]
-    colors = ["orange", "green", "blue"]
-    labels = ["Min HV", "Avg HV", "Max HV"]
-    plot_title = "Comparison of Min, Avg and Max HV values for MOEA/D after 1e8 ev"
+    plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue") """
+    datasets = [max_preliminary, max_objectives]
+    colors = ["green", "blue"]
+    labels = ["Max HV for 20-days MPP", "Max HV for 10-days MPP"]
+    plot_title = "Comparison of Max HV values for MOEA/D after 1e8 ev"
     combine_plots(plot_title, checkpoints, datasets, colors, labels)
