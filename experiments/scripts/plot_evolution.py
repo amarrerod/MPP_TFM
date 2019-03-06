@@ -50,8 +50,8 @@ if __name__ == "__main__":
     """plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
     plot_evolution(checkpoints, average_objectives, "HV's average values evolution over 1e8 ev", "Avg HV", "green")
     plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue") """
-    datasets = [max_preliminary, max_objectives]
+    datasets = [avg_preliminary, average_objectives]
     colors = ["green", "blue"]
-    labels = ["Max HV for 20-days MPP", "Max HV for 10-days MPP"]
-    plot_title = "Comparison of Max HV values for MOEA/D after 1e8 ev"
+    labels = ["Avg HV for 20-days MPP", "Avg HV for 10-days MPP"]
+    plot_title = "Comparison of Avg HV values for MOEA/D after 1e8 ev"
     combine_plots(plot_title, checkpoints, datasets, colors, labels)
