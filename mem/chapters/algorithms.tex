@@ -1,5 +1,5 @@
 
-At this point, it will be introduced the evolutionary algorithms compared in this thesis. With a view to have variety of MOEAs, every algorithm it is based on a different MOEA approach\cite{ZHOU201132}:
+At this point, it will be introduced the evolutionary algorithms compared in this Master Thesis. With a view to have variety of MOEAs, every algorithm it is based on a different MOEA approach\cite{ZHOU201132}:
 
 \begin{itemize}
     \item Based on decomposition: Multi-objective Evolutionary Algorithm Based on Decomposition.
@@ -8,18 +8,18 @@ At this point, it will be introduced the evolutionary algorithms compared in thi
 \end{itemize}
 
 \section{Multi-objective Evolutionary Algorithm Based on Decomposition}
-Multi-objective Evolutionary Algorithm Based on Decomposition (MOEA/D) is an evolutionary algorithm for multi-objective optimisation proposed by Qingfu Zhang and Hui Li in 2007\cite{Zhang2007}. The underlying idea behind this algorithm is to decompose a multi-objective optimisation problem into a number of scalar optimisation sub-problems and optimises them simultaneously. It also harnesses in the well-known feature of Pareto optimal solutions to a MOP, which sustains that an optimal solution for a scalar optimisation problem with an objective function as the aggregation of all the $f_{i}$ could be the same as the Pareto optimal solution for the MOP\cite{Zhang2007}.
+Multi-objective Evolutionary Algorithm Based on Decomposition (MOEA/D) is an evolutionary algorithm for multi-objective optimisation proposed by Qingfu Zhang and Hui Li in 2007\cite{Zhang2007}. The underlying idea behind this algorithm is to decompose a multi-objective optimisation problem into a number of scalar optimisation sub-problems and optimise them simultaneously. It also harnesses in the well-known feature of Pareto optimal solutions to a MOOP, which sustains that an optimal solution for a scalar optimisation problem with an objective function as the aggregation of all the $f_{i}$ could be the same as the Pareto optimal solution for the MOOP\cite{Zhang2007}.
 
-The decomposition approach of MOEA/D takes place where the algorithm decomposes a MOP into \textit{N} sub-problems and simultaneously optimises every single sub-problem at each generation. Furthermore it establish some relations between sub-problems and organised them in neighbourhoods. These neighbourhoods are shaped by sub-problems which coefficient vectors are very similar to each other and every single sub-problem is optimised based on its neighbouring sub-problems information. Therefore, the optimal solution for two neighbouring sub-problems should be very similar\cite{Zhang2007}.
+The decomposition approach of MOEA/D takes place where the algorithm decomposes a MOOP into \textit{N} sub-problems and simultaneously optimises every single sub-problem at each generation. Furthermore it establish some relations between sub-problems and organised them in neighbourhoods. These neighbourhoods are shaped by sub-problems which coefficient vectors are very similar to each other and every single sub-problem is optimised based on its neighbouring sub-problems information. Therefore, the optimal solution for two neighbouring sub-problems should be very similar\cite{Zhang2007}.
 
-On the other hand, the process of decompose a MOP into \textit{N} sub-problems can be done from some different approaches. However, as the authors referred\cite{Zhang2007} it this paper the MOEA/D uses the Tchebycheff Approach\cite{Ma2018} to decompose a MOP. Formally, the Tchebycheff Approach it is defined as follows:
+On the other hand, the process of decompose a MOOP into \textit{N} sub-problems can be done from some different approaches. However, as the authors referred in \cite{Zhang2007}, in this Master Thesis the MOEA/D uses the Tchebycheff Approach\cite{Ma2018} to decompose a MOOP. Formally, the Tchebycheff Approach it is defined as follows:
 \[
 min\quad g^{te}(x|\lambda,z^{*}) = max_{i=1}^{m}\{\lambda_{i}|f_{i}(x)-z_{i}^{*}|\}
 \]
 
 where $z^{*} = (z^{*}_{1}, ..., z^{*}_{m})$ is the reference point with the best solution founds so far for each sub-problem and $\lambda_{i} = (\lambda_{i,1}, ..., \lambda_{i,m})$ is a even spread weight vector for each sub-problem \textit{i}.
 
-In addition, MOEA/D version implemented in this paper works as follows. It takes a MOP, the population size, a stopping criterion and the number of neighbours for each neighbourhood. The number of sub-problems in this implementation are the MOP's objectives. Then, it starts by randomly generate \textit{N} even spread weight vectors and compute the Euclidean distance between each others to shape the neighbourhoods, generates an initial random population and computes the reference point $Z^{*}$. After the initialisation phase, it goes into the main loop where, until the stopping criteria is not satisfied, the algorithm preforms theses steps for each individual of the population:
+In addition, MOEA/D version implemented in this paper works as follows. It takes a MOOP, the population size, a stopping criterion and the number of neighbours for each neighbourhood. The number of sub-problems in this implementation are the MOOP's objectives. Then, it starts by randomly generate \textit{N} even spread weight vectors and compute the Euclidean distance between each others to shape the neighbourhoods, generates an initial random population and computes the reference point $Z^{*}$. After the initialisation phase, it goes into the main loop where, until the stopping criteria is not satisfied, the algorithm preforms theses steps for each individual of the population:
 \begin{itemize}
   \item Reproduction: generates a new child individual from two randomly selected neighbours \textit{l, k}.
   \item Improve: maintains the new child under the limits of the problem's search space.

@@ -4,7 +4,7 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
-current_path = "/home/marrero/Universidad/MPP_TFM/experiments/10_days/fronts"
+current_path = "/home/marrero/Universidad/MPP_TFM/experiments/5_days/fronts"
 
 pre_front = "../preliminary/fronts/MPP_TFM_MOEA_D_PopSize_140_Neihb_42_days_20_MenuPlanning_100000000.24_100000040.front"
 main_front = "../10_days/fronts/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.24_100000040.front"
@@ -45,4 +45,4 @@ if __name__ == "__main__":
         label_y = "Degree of repetition"
         index = filename.split("100000000.", 1)
         index = index[1].split("_100000040.front", 1)
-        plot_front(index[0], title, label_x, label_y, cost, repetition, color="blue", alg_label="MOEA_D_PopSize_140_Neihb_42_days_10")
+        plot_front(index[0], title, label_x, label_y, cost, repetition, color="blue", alg_label="MOEA_D_PopSize_140_Neihb_42_days_5")

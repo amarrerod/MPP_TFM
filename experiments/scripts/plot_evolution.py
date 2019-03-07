@@ -2,12 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import csv
 
-average_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.bestAvgHV.evolution"
-max_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.maxHV.evolution"
-min_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.minHV.evolution"
+average_file = "../5_days/evolution/MPP_TFM_5_MOEA_D_PopSize_140_Neihb_42_days_5_MenuPlanning_100000000.bestAvgHV.evolution"
+max_file = "../5_days/evolution/MPP_TFM_5_MOEA_D_PopSize_140_Neihb_42_days_5_MenuPlanning_100000000.maxHV.evolution"
+min_file = "../5_days/evolution/MPP_TFM_5_MOEA_D_PopSize_140_Neihb_42_days_5_MenuPlanning_100000000.minHV.evolution"
 
 preliminary_max_HV = "../preliminary/hypervolume/evolution/maxHV/MPP_TFM_MOEA_D_PopSize_140_Neihb_42_days_20_MenuPlanning_100000000.maxHV.evolution"
 preliminary_avg_HV = "../preliminary/hypervolume/evolution/bestAvgHV/MPP_TFM_MOEA_D_PopSize_140_Neihb_42_days_20_MenuPlanning_100000000.bestAvgHV.evolution"
+average_10_days_file = "../10_days/evolution/MPP_TFM_10_MOEA_D_PopSize_140_Neihb_42_days_10_MenuPlanning_100000000.bestAvgHV.evolution"
 
 def read_file(filename):
     checkpoints = []
@@ -47,11 +48,12 @@ if __name__ == "__main__":
     checkpoints, max_objectives = read_file(max_file)
     checkpoints, max_preliminary = read_file(preliminary_max_HV)
     checkpoints, avg_preliminary = read_file(preliminary_avg_HV)
-    """plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
+    checkpoints, avg_10_days = read_file(average_10_days_file)
+    plot_evolution(checkpoints, min_objectives, "HV's min values evolution over 1e8 ev", "Min HV", "orange")
     plot_evolution(checkpoints, average_objectives, "HV's average values evolution over 1e8 ev", "Avg HV", "green")
-    plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue") """
-    datasets = [avg_preliminary, average_objectives]
-    colors = ["green", "blue"]
-    labels = ["Avg HV for 20-days MPP", "Avg HV for 10-days MPP"]
+    plot_evolution(checkpoints, max_objectives, "HV's max values evolution over 1e8 ev", "Max HV", "blue")
+    datasets = [avg_preliminary, avg_10_days, average_objectives]
+    colors = ["green", "blue", "red"]
+    labels = ["Avg HV for 20-days MPP", "Avg HV for 10-days MPP",  "Avg HV for 5-days MPP"]
     plot_title = "Comparison of Avg HV values for MOEA/D after 1e8 ev"
     combine_plots(plot_title, checkpoints, datasets, colors, labels)
