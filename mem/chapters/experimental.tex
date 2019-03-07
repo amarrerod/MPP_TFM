@@ -46,13 +46,13 @@ Even though there is not a significant control of the best ranked configuration 
 \newpage
 
 \section{Problem size variation}
-In this experiment, the main goal is the analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were launch with for both 5-days and 10-days MPP instances. 
+In this experiment, the main goal is the analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were launch with for both 5-days and 10-days MPP instances. The Table \ref{table:MOEA_5_10} below show the minimum, median, mean and maximum hypervolume values for the before MOEA/D configuration for 5-days and 10-days MPP instances. The results are considerably similar but the average performance for 5-days MPP instance is slightly better in this particular case. And Figure \ref{fig:fronts_5_10} shows an approximation of the Pareto Front after 1e8 evaluations facing 5-days and 10-days MPP instances.
 
 \input{chapters/tables/moead_10.tex}
 
-The following Figure \ref{fig:fronts_5_10} shows an approximation of the Pareto Front after 1e8 evaluations facing 5-days and 10-days MPP instances. And Figure \ref{fig:average} shows the evolution of the minimum, average and maximum hypervolume values for MOEA/D after 1e8 facing a 10-days MPP, with a significant difference between the maximum and minimum hypervolume values at each checkpoint.
+Besides, Figure \ref{fig:average} shows the evolution of the minimum, average and maximum hypervolume values for MOEA/D after 1e8 facing a 10-days MPP, with a significant difference between the maximum and minimum hypervolume values at each checkpoint.
 
-Finally, in Figure~\ref{fig:comare} the performance of MOEA/D facing 5-days, 10-days and 20-days MPP instances is compared by they respective average hypervolume values. As it can be see, the MOEA/D algorithm rapidly increases the average hypervolume value for 5-days MPP and gets the better results compared with 10-days and 20-days instances. On the other, MOEA/D seems to perform better on 10-days MPP compared against the 20-days MPP due to slightly higher average hypervolume values in most checkpoints but at the end of the 1e8 evaluations the average hypervolume value is equal for both instances.
+Furthermore, in Figure~\ref{fig:comare} the performance of MOEA/D facing 5-days, 10-days and 20-days MPP instances is compared by they respective average hypervolume values. As it can be see, the MOEA/D algorithm rapidly increases the average hypervolume value for 5-days MPP and gets the better results compared with 10-days and 20-days instances. On the other, MOEA/D seems to perform better on 10-days MPP compared against the 20-days MPP due to slightly higher average hypervolume values in most checkpoints but at the end of the 1e8 evaluations the average hypervolume value is equal for both instances.
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
@@ -84,7 +84,6 @@ Finally, in Figure~\ref{fig:comare} the performance of MOEA/D facing 5-days, 10-
 \label{fig:comare}
 \end{figure}
 
-\pagebreak
 
 Moreover, comparing the results of the previous work done with this novel MPP formulation in\cite{Miranda2018}, even though the authors set the number of evaluations at 4e8 the average hypervolume value at 1e8 evaluations for 10-days MPP instances can be seen in the following Table \ref{table:compare}. The results shows how every chosen configuration of~NSGA-II and SPEA-2 outperforms the best configuration found so far for MOEA/D facing 10-days MPP. Additionally, the Figures \ref{fig:avg} and \ref{fig:previous_HV_10} shows how the average hypervolumen value evolves and both NSGA-II and SPEA-2 reach higher values with significant less evaluations than MOEA/D. With only 5e7 evaluations the average hypervolume value is noticeably higher than the average value reached by MOEA/D at 1e8 evaluations.
 \input{chapters/tables/avg_1e8.tex}
