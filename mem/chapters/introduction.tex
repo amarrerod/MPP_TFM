@@ -1,15 +1,15 @@
 \section{Optimisation Problems}
-An Optimisation Problem~(OP) is a problem which has a score function and bounds where the main task is to find a input that optimises the score function. Optimisation problems can be categorised as \textit{discrete optimisation problem~(DOP)} or \textit{continuous optimisation problem~(COP)} whether the variables of the problem are discrete or continuous. 
+An Optimisation Problem~(OP) is a problem which has a score function and bounds where the main task is to find a input that optimises the score function. Optimisation problems can be categorised as \textit{discrete optimisation problem~(DOP)} or \textit{Continuous Optimisation Problem~(COP)} whether the variables of the problem are discrete or continuous. 
 Formally speaking, an OP can be described as follows:
 \begin{equation*}
 min\;f(x), x \in \chi,\quad s.t.\:\Omega
 \end{equation*}
-where $\chi \subset\mathbb{R}^{n}$ is the search space defined over a set of \textit{n} decision variables  $x = ~(x_{1}, x_{2},..., x_{n})$, $f: \chi \rightarrow \mathbb{R}$ is the score function and $\Omega$ is the restrictions set in $x$. This is the definition for a minimisation DOP, although it would be equivalent for a maximisation DOP changing $min\;f(x)$ by $max\;f(x)$. The same happens for a COP, if in addition the decision variables are set over $\mathbb{Z}^{n}$ instead of $\mathbb{R}^{n}$ .
+where $\chi \subset\mathbb{Z}^{n}$ is the search space defined over a set of \textit{n} decision variables  $x = ~(x_{1}, x_{2},..., x_{n})$, $f: \chi \rightarrow \mathbb{R}$ is the score function and $\Omega$ is the restrictions set in $x$. This is the definition for a minimisation DOP, although it would be equivalent for a maximisation DOP changing $min\;f(x)$ by $max\;f(x)$. The same happens for a COP, if in addition the decision variables are set over $\mathbb{R}^{n}$ instead of $\mathbb{Z}^{n}$ .
 
 Furthermore, optimisation problems may have more than one score function and they are called \textit{Multi-Objective Optimisation Problems~(MOOP)}. This is the primary field of study in this work so, hereinafter all the references to optimisation problems in this work will be to MOOP.
 \subsection{Multi-Objective Optimisation Problems}
 
-Multi-Objective Optimisation Problems~(MOOPs) are optimisation problems which have two or more objective functions to optimise and those objective functions can take opposite directions (thinking about directions as \textit{minimise or maximise}). Besides, a MOOP can be discrete or continuous considering whether the variables of the problem are discrete or continuous. \\
+\textit{Multi-Objective Optimisation Problems~(MOOPs)} are optimisation problems which have two or more objective functions to optimise and those objective functions can take opposite directions (thinking about directions as \textit{minimise or maximise}). Besides, a MOOP can be discrete or continuous considering whether the variables of the problem are discrete or continuous. \\
 Formally speaking, a MOOP can be described as finding a vector \textbf{$x$} inside the problem's search space \textit{$\chi$} in such way that optimises the vector of objective functions \textit{$f(x)$}\cite{search}:
 \begin{align*}
 min\;f(x) & = (f_{1}(x), f_{2}(x), ..., f_{k}(x)), \: x\;\in\chi \\
@@ -21,15 +21,14 @@ where $x = (x_{1}, x_{2}, ..., x_{n}) \in \mathbb{Z}^{n}$, are the objective fun
 Moreover, the standard method for solving a MOOP is the well-known \textit{Pareto method}\cite{search}. The Pareto method is based on the non-dominance principle\cite{search, metaheuristics}. On the one hand, dominance means that given two solutions for a MOOP, one solutions dominates the other one when it has as least the same quality for every objective and, it has strictly more quality for one of them than the other solution. Formally, this can be expressed as follows\cite{search}:
 \begin{align*}
 A \succeq  B \Leftrightarrow & \forall i \in \{1, 2, ..., n\} \: a_{i} \leq b_{i}, \\
-& y\;\exists i \in \{1, 2, ..., n\}, \: a_{i} < b_{i}
+& and\;\exists i \in \{1, 2, ..., n\}, \: a_{i} < b_{i}
 \end{align*}
 
 On the other hand, it is the direction conflict between objectives which leads to solutions with trade-offs between those objectives. So, at this point it is where the \textit{non-dominance} appears. The non-dominance refers the situation where a solution it is not dominated by any other solution of the problem. That means that it can not be found any other solution to the problem which increases the quality of any objective without irredeemably decreases the quality of another one. Non-dominated solutions may be found at the limits of the search space (\textit{$\chi$}) and are those which shape the Pareto set.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \section{Evolutionary Algorithms}
 
-Nowadays, there are many methods for solving MOOPs but they can be classified merely in two types of methods: \textit{approximated methods and exacts methods}. The different categories of exact and approximated methods can be seen down below.
+Nowadays, there are many methods for solving MOOPs but they can be classified merely in two types of methods: \textit{approximated methods and exacts methods}. The different categories of exact and approximated methods can be seen in the Figure \ref{opt_met}.
 
 \begin{figure}[!ht]\label{opt_met}
 \centering
@@ -43,7 +42,7 @@ On the other hand, \textit{approximated methods} are very popular nowadays even 
 
 Approximated methods can be divided in two categories: \textit{heuristic algorithms} and \textit{meta-heuristics algorithms}. However, this work it is focus primarily in \textit{meta-heuristics algorithm} and even more specifically in the field of \textit{evolutionary algorithms}.
 
-Evolutionary algorithms~(EA) develop the metaphor of natural evolution, the survival of the fittest individual\cite{eiben}. This is, given a population of individuals in some environment with limited resources, the competition for surviving causes natural selection and the fittest individuals are more likely to survive and reproduce. Nevertheless, there are several variants of EA and they can be classified as:
+\textit{Evolutionary algorithms~(EA)} develop the metaphor of natural evolution, the survival of the fittest individual\cite{eiben}. This is, given a population of individuals in some environment with limited resources, the competition for surviving causes natural selection and the fittest individuals are more likely to survive and reproduce. Nevertheless, there are several variants of EA and they can be classified as:
 \begin{enumerate}
     \item Genetic Algorithms\cite{Whitley1994, Algorithms2004, Sivanandam2008}.
     \item Evolutionary Strategies\cite{Beyer2002, Hansen2017}.

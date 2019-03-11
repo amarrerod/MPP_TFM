@@ -1,0 +1,30 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+\centering
+\begin{tabular}{cc}
+\hline
+\multicolumn{1}{l}{\textbf{5-days MPP}} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{1}{l}{Algorithm} & \multicolumn{1}{l}{Avg Elapsed Time (hours)} \\ \hline
+NSGA-II & 5.579 \\
+SPEA-2 & 7.734 \\
+MOEA/D & 11.047 \\ \hline
+\multicolumn{1}{l}{10-days MPP} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{1}{l}{Algorithm} & \multicolumn{1}{l}{Avg Elapsed Time (hours)} \\ \hline
+NSGA-II & 6.838 \\
+MOEA/D & 8.549 \\
+SPEA-2 & 8.855 \\ \hline
+\multicolumn{1}{l}{20-days MPP} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{1}{l}{Algorithm} & \multicolumn{1}{l}{Avg Elapsed Time (hours)} \\ \hline
+NSGA-II & 9.269 \\
+MOEA/D & 10.724 \\
+SPEA-2 & 11.554 \\ \hline
+\multicolumn{1}{l}{40-days MPP} & \multicolumn{1}{l}{} \\ \hline
+\multicolumn{1}{l}{Algorithm} & \multicolumn{1}{l}{Avg Elapsed Time (hours)} \\ \hline
+MOEA/D & 8.463 \\
+NSGA-II & 13.976 \\
+SPEA-2 & 16.312
+\end{tabular}%
+\caption{MOEA/D performance comparison against best results of NSGA-II and SPEA-2 from \cite{Miranda2018} with different MPP sizes.}
+\label{table:time}
+\end{table}

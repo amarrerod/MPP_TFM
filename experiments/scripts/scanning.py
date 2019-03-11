@@ -4,7 +4,7 @@ import re
 import sys
 import numpy
 
-current_path = "/home/marrero/Universidad/MPP_TFM/experiments/5_days/raw_metco_files/"
+current_path = "/home/marrero/Universidad/MPP_TFM/experiments/40_days/raw_metco_files/"
 pattern = "Front Size ="
 only_files = [file for file in listdir(current_path) if isfile(join(current_path, file)) and not file.endswith(".py")]
 
