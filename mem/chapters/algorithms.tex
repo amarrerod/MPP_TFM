@@ -3,8 +3,7 @@ At this point, it will be introduced the Evolutionary Algorithms compared in thi
 
 \begin{itemize}
     \item Based on decomposition: Multi-objective Evolutionary Algorithm Based on Decomposition.
-    \item Based on preference: Non-dominated Sorting Genetic Algorithm II.
-    \item Based on PSO: Strength Pareto Evolutionary Algorithm 2. 
+    \item Based on Pareto optimality: Non-dominated Sorting Genetic Algorithm II and Strength Pareto Evolutionary Algorithm 2. 
 \end{itemize}
 
 \section{Multi-objective Evolutionary Algorithm Based on Decomposition}
@@ -52,7 +51,7 @@ Concretely, the algorithm can be outlined as follows: \\
 \end{algorithm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Nondominated Sorting Genetic~Algorithm~II}
+\section{Non-dominated Sorting Genetic~Algorithm~II}
 \textit{Nondominated Sorting Genetic Algorithm II}, as well known as \textit{NSGA-II} was proposed in 2002 by K. Deb and A. Pratap and S. Agarwal and T. Meyarivan to mitigate the major difficulties of nondominated sorting MOEAs\cite{996017}. In fact, this algorithm is an improvement of the previously algorithm is an improvement of the previously suggested algorithm NSGA [16] algorithm NSGA\cite{Srinivas1994MuiltiobjectiveOU} in 1994 by N. Srinivas and Kalyanmoy Deb.
 
 The main improvements of NSGA-II over NSGA is a fast nondominated sorting approach with complexity $\mathcal{O}(MN^{2})$ that replaces the previous one which has complexity $\mathcal{O}(MN^{3})$\cite{996017}(considering \textit{M} the number of objectives and \textit{N} the population size) and the selection operator of NSGA-II which comes to solve the lack of elitism of the previous NSGA version. 

@@ -18,7 +18,7 @@ min\;f(x) & = (f_{1}(x), f_{2}(x), ..., f_{k}(x)), \: x\;\in\chi \\
 \end{align*}
 where $x = (x_{1}, x_{2}, ..., x_{n}) \in \mathbb{Z}^{n}$, are the objective functions to optimise $f_{i}: \mathbb{Z}^{n} \rightarrow \mathbb{R}, \; i = 1, ..., k$ being \textit{n} the number of decision variables and $g_{i}: \mathbb{Z}^{n} \rightarrow \mathbb{R}, \; i = ~1, ..., q$ and $h_{i}: \mathbb{Z}^{n} \rightarrow \mathbb{R}, \; i = 1, ..., p$ are the problem's restriction functions.
 
-Moreover, the standard method for solving a MOOP is the well-known \textit{Pareto method}\cite{search}. The Pareto method is based on the non-dominance principle\cite{search, metaheuristics}. On the one hand, dominance means that given two solutions for a MOOP, one solutions dominates the other one when it has as least the same quality for every objective and, it has strictly more quality for one of them than the other solution. Formally, this can be expressed as follows\cite{search}:
+Moreover, the standard method for evaluating and distinguish the quality between solutions for a MPP is the well-known \textit{Pareto method optimality}\cite{search}. The Pareto optimality is based on the non-dominance principle\cite{search, metaheuristics}. On the one hand, dominance means that given two solutions for a MOOP, one solutions dominates the other one when it has as least the same quality for every objective and, it has strictly more quality for one of them than the other solution. Formally, this can be expressed as follows\cite{search}:
 \begin{align*}
 A \succeq  B \Leftrightarrow & \forall i \in \{1, 2, ..., n\} \: a_{i} \leq b_{i}, \\
 & and\;\exists i \in \{1, 2, ..., n\}, \: a_{i} < b_{i}
@@ -28,12 +28,13 @@ On the other hand, it is the direction conflict between objectives which leads t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Evolutionary Algorithms}
 
-Nowadays, there are many methods for solving MOOPs but they can be classified merely in two types of methods: \textit{approximated methods and exacts methods}. The different categories of exact and approximated methods can be seen in the Figure \ref{opt_met}.
+Nowadays, there are many methods for solving MOOPs but they can be classified merely in two types of methods: \textit{approximated methods and exacts methods}. The different categories of exact and approximated methods can be seen in the Figure \ref{fig:opt_met}.
 
-\begin{figure}[!ht]\label{opt_met}
+\begin{figure}[!ht]\
 \centering
 \includegraphics[width=0.8\textwidth]{images/meta.png}
 \caption{Optimisation methods}
+\label{fig:opt_met}
 \end{figure}
 
 On the one hand, \textit{exacts methods} are those which ensure that, if there is an optimal solution to the facing problem they will be able to find it. However, even though these methods guarantee reaching the optimal solution they have a important drawback on its performance. Assuring the optimal solution implies increasing the computational work and hence more time to obtain the solution.
@@ -42,22 +43,21 @@ On the other hand, \textit{approximated methods} are very popular nowadays even 
 
 Approximated methods can be divided in two categories: \textit{heuristic algorithms} and \textit{meta-heuristics algorithms}. However, this work it is focus primarily in \textit{meta-heuristics algorithm} and even more specifically in the field of \textit{evolutionary algorithms}.
 
-\textit{Evolutionary algorithms~(EA)} develop the metaphor of natural evolution, the survival of the fittest individual\cite{eiben}. This is, given a population of individuals in some environment with limited resources, the competition for surviving causes natural selection and the fittest individuals are more likely to survive and reproduce. Nevertheless, there are several variants of EA and they can be classified as:
+\textit{Evolutionary algorithms~(EA)} develop the metaphor of natural evolution, the survival of the fittest individual\cite{eiben}. This is, given a population of individuals in some environment with limited resources, the competition for surviving causes natural selection and the fittest individuals are more likely to survive and reproduce. Nevertheless, there are several variants of EA, some of them are:
 \begin{enumerate}
     \item Genetic Algorithms\cite{Whitley1994, Algorithms2004, Sivanandam2008}.
     \item Evolutionary Strategies\cite{Beyer2002, Hansen2017}.
     \item Differential Evolution\cite{Algorithm2006, DE1, DE2, DE3}.
 \end{enumerate}
 
-Moreover, there are a specific group of evolutionary algorithms for solving multi-objective problems known as \textit{Multi-Objective Evolutionary Algorithms~(MOEAs)}. MOEAs can be classified in many different subgroups considering the main approach underlying the algorithm\cite{ZHOU201132}:
+Moreover, there is a specific group of evolutionary algorithms for solving multi-objective problems known as \textit{Multi-Objective Evolutionary Algorithms~(MOEAs)}. MOEAs can be classified in many different subgroups considering the main approach underlying the algorithm\cite{ZHOU201132}:
 \begin{itemize}
-    \item MOEAs based on decomposition, i.e. MOEA/D\cite{Zhang2007, Ma2018}.
-    \item MOEAs based on preference, i.e. NSGA-II\cite{996017}.
-    \item Indicator-based MOEAs, i.e. IBEA\cite{IBEA}.
-    \item PSO-based approaches, i.e. SPEA-2\cite{Laumanns2001SPEA2}.
+    \item MOEAs based on decomposition, i.e., MOEA/D\cite{Zhang2007, Ma2018}.
+    \item Pareto-based MOEAs, i.e., NSGA-II\cite{996017} and SPEA-2\cite{Laumanns2001SPEA2}.
+    \item Indicator-based MOEAs, i.e., IBEA\cite{IBEA}.
 \end{itemize}
 
-Considering the field of optimisation problems, the natural evolution metaphor is develop as follows:
+Considering the field of optimisation problems, the natural evolution metaphor can be specified as the following set of steps:
 \begin{enumerate}
     \item The problem to solve and its bounds is the environment with limited resources.
     \item A set of random initial solutions for the given problem are the first individuals at generation zero. 
@@ -65,7 +65,7 @@ Considering the field of optimisation problems, the natural evolution metaphor i
     \item At each generation, the individuals within a population compete and the fittest individuals (the better quality solutions) survive.
     \item Steps three and four are repeated until reaching the stop condition.
 \end{enumerate}
-Generally, the before metaphor can be shown as a pseudocode\cite{eiben}:
+Generally, the aforementioned metaphor can be shown as a pseudocode\cite{eiben}:
 
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
@@ -73,10 +73,10 @@ Generally, the before metaphor can be shown as a pseudocode\cite{eiben}:
   \State EVALUATE each candidate
   \While{not StopCriteria satisfied}
     \State SELECT parents
-    \State RECOMBINE pairs of parents
-    \State MUTATE the result offspring
-    \State EVALUATE new candidates
-    \State SELECT individuals for the next generation 
+    \State RECOMBINE pairs of parents to obtain the offspring
+    \State MUTATE the offspring
+    \State EVALUATE new offspring
+    \State SELECT individuals from among parents and offspring for the next generation 
   \EndWhile
   \State \textbf{end}
   \end{algorithmic}
@@ -86,7 +86,7 @@ Generally, the before metaphor can be shown as a pseudocode\cite{eiben}:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\section{Menu Planning Problem Formulation considered}
+\section{Considered Formulation for the Menu Planning Problem}
 
 \begin{comment}
 The Menu Planning Problem \textit{(MPP)} is a well-known NP-Problem which has been trying to computerise since 1960\cite{Ngo2016}. In essence, the MPP is to find a set of dishes combination which satisfies some restrictions of budge, variety and nutritional requirements for a \textit{n} days sequence. In addition, it can include other constraints such as user preferences, cooking time or the number for meals each day.
@@ -100,7 +100,7 @@ Eventually, another study where the MPP is faced as a single-objective problem i
 
 As can be seen, there is a certain variety within the optimisation methods for solving the single-objective MPP approach. Despite that, Evolutionary Computing \textit{(EC)} techniques, such as GA, are mostly cited in the related bibliography as a good choice\cite{Ngo2016, Seljak2009, Moreira2018}. 
 \end{comment}
-In this particular case, a novel formulation of the Menu Planning Problem proposed in \cite{Miranda2018} for school cafeterias is considered. The authors defined two objectives: meal cost and variety of dishes.
+In this particular case, a novel formulation of the Menu Planning Problem proposed for school cafeterias is considered. The authors defined two objectives: meal cost and variety of dishes.
 On the one hand, as usual in MPP, one goal is to minimise the total cost of the meal plan generated. Since the meal plan is designed for school cafeterias, the authors considered three meals in each menu: first course, second course and dessert. Formally, the meal plan cost can be defined as follows:
 \[
     min\; C = \sum_{i=1}^{n}{c_{fc_{i}} + c_{sc_{i}} + c_{d_{i}}}
@@ -111,15 +111,16 @@ On the other hand, an assorted menu plan is a must for children in order to avoi
 \[
     min\; L_{Rep} = \sum_{i=1}^{n}{v_{table_{i}} + \frac{p_{fc}}{d_{fc_{i}}} + \frac{p_{sc}}{d_{sc_{i}}} + \frac{p_{ds}}{d_{ds_{i}}} + v_{FG_{i}}}
 \]
-Where $L_{Rep}$ is the level of repetition to minimise, $v_{table_{i}}$ represents the compatibility between the courses $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ for day $n$, $p$ is a penalty constant for every kind of course and $d$ stands for the number of days since the course was repeat for the last time. Finally, $v_{FG_{i}}$ is the penalty value for repetition of food groups in the last five days.
+Where $L_{Rep}$ is the level of repetition to be minimise, $v_{table_{i}}$ represents the compatibility between the courses $c_{fc_{i}}, c_{sc_{i}}, c_{d_{i}}$ for day $n$, $p$ is a penalty constant for every kind of course and $d$ stands for the number of days since the course was repeat for the last time. Finally, $v_{FG_{i}}$ is the penalty value for repetition of food groups in the last five days.
 
-Additionally, in order to consider a menu plan as feasible, it must keep to some restrictions about a set nutritional requirements ($N$). The nutritional requirements considered in this formulation are the follow:
+Additionally, in order to consider that a menu plan as feasible, it must satisfy some restrictions about a set of nutritional requirements ($N$). The nutritional requirements considered in this formulation are the following:
 \begin{AutoMultiColItemize}
     \item Folic acid.
     \item Calcium.
     \item Energy (Kcal).
     \item Phosphorus.
     \item Fat.
+    \item Carbohydrate.
     \item Iron.
     \item Magnesium.
     \item Potassium.

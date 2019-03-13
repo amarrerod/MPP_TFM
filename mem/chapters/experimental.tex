@@ -1,8 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this chapter, the experimental evaluation of MOEA/D will be introduce. In order to achieve an accurate comparison of MOEA/D with the results obtained in \cite{Miranda2018} by other algorithms mentioned before (NSGA-II and SPEA-2), the algorithm and the experimental evaluation were development through the same framework used in \cite{Miranda2018} called Metaheuristic-based Extensible Tool for Cooperative Optimisation (METCO)~\footnote{Available at: https://github.com/PAL-ULL/software-metco} proposed in \cite{METCO}.
-In addition, the experiment were executed on a Debian GNU/Linux computer with four AMD Opteron processors at 2.8GHz and 64 GB RAM and each run was repeated 25 times.
-Furthermore, following the evaluation procedure done by the authors in \cite{Miranda2018}, the \textit{hypervolume~(HV)}~\cite{HYPER} was the metric selected to compare the different configurations of MOEA/D and the \textit{Shapiro-Wilk, Levene, ANOVA or Welch} test were considered for results which follow a normal distribution or \textit{Kruskal-Wallis} test otherwise. However, in this Master Thesis the number of individual evaluations was decreased from 4e8 evaluations to 1e8 evaluations in order to obtain the results in a faster way.
+In this chapter, the experimental evaluation of MOEA/D will be introduced. %In order to achieve an accurate comparison of MOEA/D with the results obtained in \cite{Miranda2018} by other algorithms mentioned before (NSGA-II and SPEA-2),%
+The algorithm and the experimental evaluation were developed through the same framework called Metaheuristic-based Extensible Tool for Cooperative Optimisation (METCO)~\footnote{Available at: https://github.com/PAL-ULL/software-metco} proposed in \cite{METCO}.
+In addition, the experiment were executed on a Debian GNU/Linux computer with four AMD Opteron processors at 2.8GHz and 64 GB RAM. Each run was repeated 25 times considering 1e8 evaluations as the stop criteria.
+
+Furthermore, with the aim of statistically supporting the conclusions extracted, the following the evaluation procedure was applied. The \textit{hypervolume~(HV)}~\cite{HYPER} was the metric selected to compare the different configurations of MOEA/D and the \textit{Shapiro-Wilk, Levene, ANOVA or Welch} test were considered for results which follow a normal distribution or \textit{Kruskal-Wallis} test otherwise. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Instances}
 For this evaluation, a total number of 67 different courses were available group together in three different files:
@@ -22,159 +24,103 @@ Besides, the structure of every file is an CSV file with the following fields:
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Parameter Setting}
-In this preliminary experiment, the main goal was to find which values of the MOEA/D\cite{Zhang2007} parameters form the better configuration facing the MPP formulation considered in this Master Thesis. The list of MOEA/D's parameters is:
+In this preliminary experiment, the main goal was to find which values of the MOEA/D\cite{Zhang2007} parameters provide the best configuration facing the MPP formulation considered in this Master Thesis. The list of MOEA/D parameters is:
 \begin{itemize}
     \item Population size.
     \item Neighbourhood size.
     \item Mutation probability that was set at 0.05.
     \item Crossover probability which was set at 1.
 \end{itemize}
-At this point, it must be say that MPP takes one parameter which defines the number of different days that in this preliminary experiment was set at \textbf{20 days}. 
-The comments of the MOEA/D's authors in \cite{Zhang2007} about the performance of the algorithm with very small or large neighbourhood size and the effect of the population size on its performance were took into account when designing this experiment. However, a wide range of values were considered. Then, five different values for the population size and neighbourhood size were set in order to obtain 25 different configurations of MOEA/D. The values are:
+At this point, it is worth mentioning that MPP takes one parameter which defines the number of different days, for which the menu plan will be designed, that in this preliminary experiment was set to \textbf{20 days}. 
+The comments of the authors of MOEA/D algorithm in \cite{Zhang2007} about the performance of the algorithm with very small or large neighbourhood sizes and the effect of the population size on its performance were took into account when designing this experiment. Bearing the above in mind, a wide range of values were considered. Particularly, five different values for the population size and neighbourhood size were set in order to obtain 25 different configurations of MOEA/D. The values are:
 \begin{itemize}
     \item Population size: 25, 80, 140, 190, 250.
     \item Neighbourhood size: 0.4, 0.3, 0.25, 0.2, 0.16 percentage of the total population size.
 \end{itemize}
-Table \ref{ranking} shows the ranking of all MOEA/D configuration for a 20-days MPP related to the hypervolume values obtained at the end of the executions. The ranking \textit{(R)} was calculated considering the number of times that one configuration outperforms other configurations \textit{(W)} and the number of times that it was outperformed by other configurations \textit{(L)}: 
+Table \ref{ranking} shows the ranking of all MOEA/D configuration for a 20-days MPP related to the hypervolume values obtained at the end of the executions. The ranking \textit{(R)} was calculated considering the number of times that one configuration statistically outperforms other configurations \textit{(W)} and the number of times that it was outperformed by other configurations \textit{(L)}: 
 \[ 
 R = W - L
 \]
-Configuration A statistically outperforms configuration B if the p-value, obtained after performing a pairwise comparison of both approaches by following the statistical testing procedure described at the beginning of this chapter, is lower than the significance level $\alpha = 0.05$ , and if at the same time, A provides a higher mean and median of the hypervolume at the end of the runs\cite{Miranda2018}.
+Configuration A statistically outperforms configuration B if the p-value, obtained after performing a pairwise comparison of both approaches by following the statistical testing procedure described at the beginning of this chapter, is lower than the significance level $\alpha = 0.05$ , and if at the same time, A provides a higher mean and median of the hypervolume at the end of the runs.
 
-Even though there is not a significant control of the best ranked configuration in Table \ref{ranking} with only 9 wins over 24 other configurations, the MOEA/D configuration with a population size of 140 individuals and 42 individuals per neighbourhood seems to be the better one. Thus, this is the configuration chosen for the next experiment.
+Even though there is not a significant control of the best ranked configuration in Table \ref{ranking} with only 9 wins over 24 other configurations, the MOEA/D configuration with a population size of 140 individuals and 42 individuals per neighbourhood seems to be the best one. Thus, this is the configuration chosen for the next experiment.
 \input{chapters/tables/ranking.tex}
 
 \newpage
 
 \section{Problem size variation}
-In this experiment, the main goal is the analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were launch with for 5-days, 10-days and 40-days MPP instances. The Table \ref{table:MOEA_5_10} below show the minimum, median, mean and maximum hypervolume values for the before MOEA/D configuration for every different MPP instances compared with the best results for NSGA-II and SPEA-2 extracted from previous work done in \cite{Miranda2018}. As it can be see, both NSGA-II and SPEA-2 outperforms MOEA/D in every different MPP instance with considerable better results.
+In this experiment, the main goal was to analyse how the problem dimension affects in the performance of the best MOEA/D configuration found so far for MPP. For that reason, other 25 independent executions of MOEA/D with 140 individuals in the population and neighbourhoods of 42 individuals were run for instances of the MPP of 5, 10 and 40 days MPP. Table \ref{table:MOEA_5_10} below shows the minimum, median, mean and maximum hypervolume values obtained. The best MOEA/D configuration is compared to the best results for NSGA-II and SPEA-2 for every different MPP instance. As it can be observed, both NSGA-II and SPEA-2 outperformed MOEA/D in every different MPP instance with statistically significant differences.
 
 \input{chapters/tables/moead_10.tex}
 
 
-Moreover, comparing the results of the previous work done with this novel MPP formulation in\cite{Miranda2018}, even though the authors set the number of evaluations at 4e8 the average hypervolume value at 1e8 evaluations for, i.e 10-days MPP instances can be seen in the following Table \ref{table:compare}. The results shows how every chosen configuration of~NSGA-II and SPEA-2 outperforms the best configuration found so far for MOEA/D facing 10-days MPP. 
+%Moreover, comparing the results of the previous work done with this novel MPP formulation in\cite{Miranda2018}, even though the authors set the number of evaluations at 4e8 the average hypervolume value at 1e8 evaluations for, i.e 10-days MPP instances can be seen in the following Table \ref{table:compare}. The results shows how every chosen configuration of~NSGA-II and SPEA-2 outperforms the best configuration found so far for MOEA/D facing 10-days MPP. 
+%
+%\input{chapters/tables/avg_1e8.tex}
 
-\input{chapters/tables/avg_1e8.tex}
-
-Additionally, the Figure \ref{fig:previous_HV_10} shows how the average hypervolumen value evolves and both NSGA-II and SPEA-2 reach higher values with significant less evaluations than MOEA/D. With only 5e7 evaluations the average hypervolume value is noticeably higher than the average value reached by MOEA/D at 1e8 evaluations. The same comparison it is done in Figures \ref{fig:previous_HV_5} and \ref{fig:previous_HV_40} for 5-days and 40-days MPP instances.
-
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_NSGA2_days_10.eps}
-  \label{fig:sfig1}
-    \caption{Evolution of the average HV value for every NSGA-II configuration tested in \cite{Miranda2018}.}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_SPEA2_days_10.eps}
-  \label{fig:sfig2}
-  \caption{Evolution of the average HV value for every SPEA-2 configuration tested in \cite{Miranda2018}.}
-\end{subfigure}
-\centering
-\begin{subfigure}{.9\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../experiments/plots/avgHV_evolution_10_days.png}
-  \caption{Evolution of the average HV value for a 10-days MPP of the best MOEA/D configuration found.}
-\end{subfigure}
-\caption{Evolution of the average HV value for a 10-days MPP extracted from\cite{Miranda2018}.}
-\label{fig:previous_HV_10}
-\end{figure}
-
+Additionally, the Figure \ref{fig:previous_HV_5} shows how the average hypervolume value evolves and both NSGA-II and SPEA-2 reach considerably higher values than MOEA/D. With less than 0.2e8 evaluations, the average hypervolume value is noticeably higher than the average value reached by MOEA/D at 1e8 evaluations. The same comparison it is done in Figures \ref{fig:previous_HV_10}, \ref{fig:previous_HV_20} and\ref{fig:previous_HV_40} for 10, 20 and 40 days MPP instances, respectively.
 
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_NSGA2_days_5.eps}
-  \label{fig:sfig1}
-    \caption{Evolution of the average HV value for every NSGA-II configuration tested in \cite{Miranda2018}.}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_SPEA2_days_5.eps}
-  \label{fig:sfig2}
-  \caption{Evolution of the average HV value for every SPEA-2 configuration tested in \cite{Miranda2018}.}
-\end{subfigure}
-\centering
-\begin{subfigure}{.9\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../experiments/plots/avgHV_evolution_5_days.png}
-  \caption{Evolution of the average HV value for a 5-days MPP of the best MOEA/D configuration found.}
-\end{subfigure}
-\caption{Evolution of the average HV value for a 5-days MPP extracted from\cite{Miranda2018}.}
+  \includegraphics[width=1.0\linewidth]{../experiments/plots/avg_evolution_5_days.png}
+\caption{Evolution of the average HV value for 5-days MPP at 1e8 evaluations.}
 \label{fig:previous_HV_5}
 \end{figure}
 
-
-
-
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\linewidth]{../experiments/plots/avg_evolution_10_days.png}
+\caption{Evolution of the average HV value for 10-days MPP at 1e8 evaluations.}
+\label{fig:previous_HV_10}
+\end{figure}
 
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_NSGA2_days_40.eps}
-  \label{fig:sfig1}
-    \caption{Evolution of the average HV value for every NSGA-II configuration tested in \cite{Miranda2018}.}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+  \includegraphics[width=1.0\linewidth]{../experiments/plots/avg_evolution_20_days.png}
+\caption{Evolution of the average HV value for 20-days MPP at 1e8 evaluations.}
+\label{fig:previous_HV_20}
+\end{figure}
+
+\begin{figure}[H]
   \centering
-  \includegraphics[width=1.0\linewidth]{../references/meanHV_Evolution_SPEA2_days_40.eps}
-  \label{fig:sfig2}
-  \caption{Evolution of the average HV value for every SPEA-2 configuration tested in \cite{Miranda2018}.}
-\end{subfigure}
-\centering
-\begin{subfigure}{.9\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../experiments/plots/avgHV_evolution_40_days.png}
-  \caption{Evolution of the average HV value for a 40-days MPP of the best MOEA/D configuration found.}
-\end{subfigure}
-\caption{Evolution of the average HV value for a 40-days MPP extracted from\cite{Miranda2018}.}
+  \includegraphics[width=1.0\linewidth]{../experiments/plots/avg_evolution_40_days.png}
+\caption{Evolution of the average HV value for 40-days MPP at 1e8 evaluations.}
 \label{fig:previous_HV_40}
 \end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Besides, Pareto Front representations of the final results are shown at Figures \ref{fig:front_comp_1}, \ref{fig:front_comp_2} \ref{fig:front_comp_3}. Although MOEA/D obtains menu plans with less degree of repetition, the total cost of the menu plan is slightly higher compared with the results obtained by NSGA-II and SPEA-2 with almost the same degree of repetition for 5-days, 10-days and 40-days MPP instances. These results are more than acceptable considering that MOEA/D performs four times less evaluations that NSGA-II and SPEA-2 in the experimental evaluation done in \cite{Miranda2018}.
+%Besides, Pareto Front representations of the final results from MOEA/D for every MPP instance after 1e8 evaluations are shown at Figures \ref{fig:front_comp_1}, \ref{fig:front_comp_2}, \ref{fig:front_comp_3} and \ref{fig:front_comp_4}. Although MOEA/D obtains menu plans with less degree of repetition, the total cost of the menu plan is slightly higher compared with the results obtained by NSGA-II and SPEA-2 with almost the same degree of repetition for 5-days, 10-days and 40-days MPP instances. These results are more than acceptable considering that MOEA/D performs four times less evaluations that NSGA-II and SPEA-2 in the experimental evaluation done in \cite{Miranda2018}.
+
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/fronts_5days.eps}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=1.0\linewidth]{../experiments/plots/fronts/5_days/MOEA_D_PopSize_140_Neihb_42_days_5_6.png}
-\end{subfigure}
-\caption{Front approximation comparison between NSGA-II and SPEA-2 at 4e8 evaluations against best MOEA/D configuration found so far at 1e8 evaluations facing a 5-days MPP.}
+\caption{Front approximation at 1e8 evaluations from best MOEA/D configuration found facing 5-days MPP.}
 \label{fig:front_comp_1}
 \end{figure}
 
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/fronts_10days.eps}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=1.0\linewidth]{../experiments/plots/fronts/10_days/MOEA_D_PopSize_140_Neihb_42_days_10_10.png}
-\end{subfigure}
-\caption{Front approximation comparison between NSGA-II and SPEA-2 at 4e8 evaluations against best MOEA/D configuration found so far at 1e8 evaluations facing a 10-days MPP.}
+\caption{Front approximation at 1e8 evaluations from best MOEA/D configuration found facing 10-days MPP.}
 \label{fig:front_comp_2}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1.0\linewidth]{../experiments/plots/fronts/20_days/MOEA_D_PopSize_140_Neihb_42_days_20_12.png}
+\caption{Front approximation at 1e8 evaluations from best MOEA/D configuration found facing 20-days MPP.}
+\label{fig:front_comp_3}
 \end{figure}
 
 
 \begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=1.0\linewidth]{../references/fronts_40days.eps}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=1.0\linewidth]{../experiments/plots/fronts/40_days/MOEA_D_PopSize_140_Neihb_42_days_40_10.png}
-\end{subfigure}
-\caption{Front approximation comparison between NSGA-II and SPEA-2 at 4e8 evaluations against best MOEA/D configuration found so far at 1e8 evaluations facing a 40-days MPP.}
-\label{fig:front_comp_3}
+\caption{Front approximation at 1e8 evaluations from best MOEA/D configuration found facing 40-days MPP.}
+\label{fig:front_comp_4}
 \end{figure}
 
-Lastly, due to the fact that the previous work and this experimental evaluation was done with the same framework and run in the same system, an reliable elapsed time comparison between the different algorithms can be made. The following Table \ref{table:time} shows the average time in hours for 25 independent runs for every compared algorithm. As results show, NSGA-II totally outperforms both SPEA-2 and MOEA/D for 5, 10, and 20-days MPP instances. However, surprisingly MOEA/D obtains quite faster but low quality results than NSGA-II and SPEA-2 for 40-days MPP.
- 
-\input{chapters/tables/elapsed_time.tex}
+%Lastly, due to the fact that the previous work and this experimental evaluation was done with the same framework and run in the same system, an reliable elapsed time comparison between the different algorithms can be made. The following Table \ref{table:time} shows the average time in hours for 25 independent runs for every compared algorithm. As results show, NSGA-II totally outperforms both SPEA-2 and MOEA/D for 5, 10, and 20-days MPP instances. However, surprisingly MOEA/D obtains quite faster but low quality results than NSGA-II and SPEA-2 for 40-days MPP.
+% 
+%\input{chapters/tables/elapsed_time.tex}
